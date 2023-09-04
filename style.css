@@ -1,0 +1,126 @@
+/* Indent texts */
+p {
+  text-indent: 1rem;
+}
+/* navbar */
+.topnav {
+  display: block;
+  overflow: hidden;
+}
+/* Navbar links */
+.topnav a {
+  font-size: 17px;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+  transition: all 0.4s ease;
+}
+.topnav a:hover {
+  opacity: 0.5;
+}
+/* navbar icon */
+.topnav a:last-child {
+  float: right;
+}
+div.row {
+  margin: 0;
+}
+div.row > * {
+  margin-top: 1rem;
+}
+/* Normal */
+@media screen and (min-width: 600px){
+  .topnav a {
+    float: left;
+  }
+  .topnav a:last-child { /*Hide the navbar button*/
+    display: none;
+  }
+  .topnav a:not(last-child){ /*float all elements to the left*/
+    display: inline;
+  }
+  .carousel-container {
+    overflow: hidden;
+  }
+  .carousel-container h2 {
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .carousel img {
+    height: 15rem;
+  }
+  
+}
+/* Responsive */
+@media screen and (max-width: 600px){
+  .topnav {
+    background-color: #f5f5f5;
+  }
+  .topnav a:last-child { /*show the navbar button*/
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .topnav a:first-child {
+    display: block;
+  }
+  .topnav a:not(first-child){
+    display: none;
+  }
+  .header p:last-child {
+    display: none;
+  }
+  .carousel img {
+    width: 80%;
+    height: 10rem;
+  }
+  .carousel-caption h5 span {
+    font-size: 10px;
+  }
+  .card {
+    width: 95%;
+    margin: 0 auto;
+    display: block;
+  }
+}
+.carousel-caption h5 span {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+.carousel img {
+  width: 80%;
+  border-radius: 8px;
+  border: solid 1px black;
+  cursor: pointer;
+}
+.carousel-inner {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+.card-img-top {
+  height: 200px;
+}
+footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(8, 7, 7);
+  color: rgb(175, 171, 171);
+}
+footer a {
+  text-decoration: none;
+  color: rgb(175, 171, 171);
+}
+footer a:hover {
+  color: white;
+  text-decoration: none;
+}
+footer a.whatsapp:hover {
+  color: green;
+}
+footer a.instagram:hover {
+  color: #E4405F;
+}
