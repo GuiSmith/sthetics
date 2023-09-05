@@ -56,6 +56,11 @@ function createNavLink(link, text, parentElement){
 }
 //Show footer
 function showFooter(folderMain){
+  if(folderMain){
+    mainFolder = true;
+  }else{
+    mainFolder = false;
+  }
   const body = document.body;
   //Footer
   const footer = showElement("footer",body);
@@ -122,6 +127,7 @@ function showFooter(folderMain){
   disclaimerText.classList.add("text-center");
   disclaimerText.innerHTML = "Este website não é comercial. <br> Foi criado com o objetivo de praticar desenvolvimento web";
 }
+var mainFolder;
 //Create footer contacts
 function createContact(link,iconSrc,iconAlt,text,parentElement){
   const element = showElement("a",parentElement);
@@ -130,7 +136,7 @@ function createContact(link,iconSrc,iconAlt,text,parentElement){
   element.target = '_blank';
   //element icon
   const elementIcon = showElement("img",element);
-  elementIcon.src = "media/"+iconSrc;
+  elementIcon.src = (mainFolder) ? ("media/"+iconSrc) : ("../media/"+iconSrc);
   elementIcon.alt = iconAlt;
   elementIcon.classList.add("link-icon");
   const elementText = showElement("span",element);
