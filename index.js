@@ -194,3 +194,4 @@ function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,priceText,text){
   order.textContent = "Orçamento";
   order.href = "services/index.html?id="+link+"&order=true";
 }
+const test = "test";
