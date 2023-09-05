@@ -31,9 +31,9 @@ function showNavbar(folderMain){
   nav.id = "topnavbar";
   //Links
   //Sthetics
-  createNavLink("../index.html#header","Sthetics",nav);
+  createNavLink((folderMain) ? ("index.html#services") : ("../index.html#header"),"Sthetics",nav);
   //Services
-  createNavLink("../index.html#services","Serviços",nav);
+  createNavLink((folderMain) ? ("#services") : ("../index.html#services"),"Serviços",nav);
   // Company
   createNavLink("#","Empresa",nav);
   // Contacts
