@@ -130,7 +130,7 @@ function createContact(link,iconSrc,iconAlt,text,parentElement){
   element.target = '_blank';
   //element icon
   const elementIcon = showElement("img",element);
-  elementIcon.src = "../media/"+iconSrc;
+  elementIcon.src = "media/"+iconSrc;
   elementIcon.alt = iconAlt;
   elementIcon.classList.add("link-icon");
   const elementText = showElement("span",element);
