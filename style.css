@@ -124,3 +124,6 @@ footer a.whatsapp:hover {
 footer a.instagram:hover {
   color: #E4405F;
 }
+footer .link-icon {
+  width: 25px;
+}
