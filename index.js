@@ -3,7 +3,8 @@ class Service {
   constructor(id, name, price, time, days, dayHours, description, details, benefits, results, img1, img2, iframe) {
     this.id = id;
     this.name = name;
-    this.price = price;
+    let formattedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    this.price = formattedPrice;
     this.time = time;
     this.days = days;
     this.dayHours = dayHours;
@@ -33,7 +34,7 @@ const teeth = new Service(
   "O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.",
   "teeth.jpg",
   "teeth2.jpg",
-  "https://www.youtube.com/embed/UvRmgtRGxiA"
+  "UvRmgtRGxiA"
 );
 //Limpeza facial
 const facial = new Service(
@@ -49,7 +50,7 @@ const facial = new Service(
   "Os resultados incluem uma pele mais suave, textura aprimorada, estimulação da renovação celular e redução da acne, proporcionando uma aparência mais saudável e radiante.",
   "facial1.jpg",
   "facial2.jpg",
-  "https://www.youtube.com/embed/987654321"
+  "SIbMDdzBKU4"
 );
 //Depilação a laser
 const hairRemoval = new Service(
@@ -65,11 +66,10 @@ const hairRemoval = new Service(
   "Os resultados da depilação a laser são duradouros, com uma redução permanente dos pelos na área tratada. Você pode desfrutar de uma pele suave e livre de pelos por um longo período.",
   "hairRemoval1.jpg",
   "hairRemoval2.jpg",
-  "https://www.youtube.com/embed/123456789"
+  "MyQMb26pCwY"
 );
-
 //Show Navigation bar
-function showNavbar(folderMain){
+function showNavbar(){
   const body = document.body;
   //Nav element
   const nav = showElement("nav",body);
@@ -77,9 +77,9 @@ function showNavbar(folderMain){
   nav.id = "topnavbar";
   //Links
   //Sthetics
-  createNavLink((folderMain) ? ("index.html") : ("../index.html"),"Sthetics",nav);
+  createNavLink((mainFolder) ? ("index.html") : ("../index.html"),"Sthetics",nav);
   //Services
-  createNavLink((folderMain) ? ("#services") : ("../index.html#services"),"Serviços",nav);
+  createNavLink((mainFolder) ? ("#services") : ("../index.html#services"),"Serviços",nav);
   // Company
   createNavLink("#","Empresa",nav);
   // Contacts
@@ -95,12 +95,7 @@ function showNavbar(folderMain){
   iconImg.className = "fa fa-bars";
 }
 //Show footer
-function showFooter(folderMain){
-  if(folderMain){
-    mainFolder = true;
-  }else{
-    mainFolder = false;
-  }
+function showFooter(){
   const body = document.body;
   //Footer
   const footer = showElement("footer",body);
@@ -180,7 +175,6 @@ function showElement(elementTag, parentElement){
   // console.log(elementTag + " was added in " + parentElement);
   return element;
 }
-var mainFolder;
 //Create footer contacts
 function createContact(link,iconSrc,iconAlt,text,parentElement){
   const element = showElement("a",parentElement);

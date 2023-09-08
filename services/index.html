@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="style.css">
+    <script>mainFolder = false</script>
     <script src="../index.js"></script>
-    <script src="index.js"></script>
     <title>Sthetics</title>
   </head>
   <body class="m-0">
     <!-- Navbar -->
     <script>
-      showNavbar(false);
+      showNavbar();
     </script>
     <!-- Service -->
     <section class="container">
@@ -29,12 +29,12 @@
             <li>Preço: <span id="service-price"></span> </li>
             <li>Tempo de realização: <span id="service-time"></span> </li>
             <li>Dias de atendimento: <span id="service-days"></span> </li>
-            <li>Horários de atendimento: <span id="service-hours"></span> </li>
+            <li>Horários de atendimento: <span id="service-day-hours"></span> </li>
           </ul>
           <p class="text-justify">OBS: O preço do serviço pode mudar dependendo do tempo de realização, dia de atendimento, doutor e forma de pagamento</p>
         </div>
         <!-- Details -->
-        <div class="col-lg-6 col-sm-12 service-details">
+        <div class="col-lg-6 col-sm-12 service-procedure">
           <h3 class="title">Detalhes</h3>
           <p class="text-justify" id="service-details">
             O nosso serviço de clareamento dental é projetado para trazer um sorriso mais brilhante e confiante para os nossos pacientes. Entendemos o quão importante é a aparência do seu sorriso e estamos dedicados a ajudá-lo a alcançar dentes mais brancos e radiantes.
@@ -46,14 +46,14 @@
         <!-- Benefícios -->
         <div class="col-lg-6 col-sm-12">
           <h3 class="title">Benefícios</h3>
-          <p class="text-justify">O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.</p>
-          <img class="service-img" src="../media/2055208.1.jpg" alt="" id="service-img1">
+          <p class="text-justify" id="service-benefits">O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.</p>
+          <img class="service-img" src="" alt="" id="service-img1">
         </div>
         <!-- Resultados -->
         <div class="col-lg-6 col-sm-12">
           <h3 class="title">Resultados</h3>
-          <p class="text-justify">O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.</p>
-          <img class="service-img" src="../media/2055208.2.jpg" alt="" id="service-im2">
+          <p class="text-justify" id="service-results">O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.</p>
+          <img class="service-img" src="" alt="" id="service-img2">
         </div>
       </div>
       <!-- Video -->
@@ -65,9 +65,8 @@
       </div>
     </section>
     <!-- Footer -->
-    <script>
-      showFooter(false);
-    </script>
+    <script>showFooter();</script>
+    <script src="index.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

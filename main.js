@@ -20,11 +20,10 @@ function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,price,text){
     const body = showElement("div",card);
     body.classList.add("card-body");
     //Card title and Price
-    const formattedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     const title = showElement("h5",body);
     title.classList.add("card-title");
     title.classList.add("text-center");
-    title.textContent = titleText+" - "+formattedPrice;
+    title.textContent = titleText+" - "+price;
     //Card text
     const cardText = showElement("p",body);
     cardText.classList.add("card-text");
