@@ -1,27 +1,73 @@
-//Mobile navbar
-var linksToggle = false;
-function navbarLinks(){
-  const links = document.querySelectorAll(".topnav a:not(:first-child):not(:last-child)");
-  console.log(links);
-  if(!linksToggle){
-    links.forEach(function(link){
-      link.style.display = "block";
-    });
-    linksToggle = true;
-  }else{
-    links.forEach(function(link){
-      link.style.display = "none";
-    });
-    linksToggle = false;
+class Service {
+  static services = [];
+  constructor(id, name, price, time, days, dayHours, description, details, benefits, results, img1, img2, iframe) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.time = time;
+    this.days = days;
+    this.dayHours = dayHours;
+    this.description = description;
+    this.details = details;
+    this.benefits = benefits;
+    this.results = results;
+    this.img1 = img1;
+    this.img2 = img2;
+    this.iframe = iframe;
+    Service.services.push(this);
+    // console.log(this);
   }
 }
-//Create and append elements
-function showElement(elementTag, parentElement){
-  const element = document.createElement(elementTag);
-  parentElement.appendChild(element);
-  // console.log(elementTag + " was added in " + parentElement);
-  return element;
-}
+//Services
+//Clareamento dental
+const teeth = new Service(
+  2055208,
+  "Claramento dental",
+  179.90,
+  30,
+  "dias úteis",
+  "8:00 ~ 18h:00",
+  "Um sorriso mais brilhante e confiante em minutos!",
+  "O clareamento dental usa produtos com peróxido para deixar os dentes mais brancos. Pode ser feito no consultório ou em casa com moldeiras e gel clareador. Isso remove manchas e deixa o sorriso mais brilhante. Consulte um dentista para fazê-lo com segurança.",
+  "O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.",
+  "O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.",
+  "teeth.jpg",
+  "teeth2.jpg",
+  "https://www.youtube.com/embed/UvRmgtRGxiA"
+);
+//Limpeza facial
+const facial = new Service(
+  12913165261,
+  "Limpeza Facial",
+  129.99,
+  60,
+  "dias úteis",
+  "10:00 ~ 19:00",
+  "Promova a saúde da pele com nossa limpeza facial profissional, removendo impurezas e reduzindo a acne.",
+  "A limpeza de pele envolve a remoção de impurezas, cravos e células mortas da pele. Geralmente, é feita com vapor para abrir os poros, seguido da extração manual das impurezas. Depois, aplicam-se produtos para acalmar e hidratar a pele. Isso melhora a textura e a saúde da pele. Consulte um esteticista para realizar o procedimento.",
+  "A limpeza de pele remove impurezas, cravos e células mortas, melhorando a textura da pele e estimulando a renovação celular. Isso resulta em uma pele mais suave, hidratada e com menos acne, promovendo uma aparência mais saudável e radiante.",
+  "Os resultados incluem uma pele mais suave, textura aprimorada, estimulação da renovação celular e redução da acne, proporcionando uma aparência mais saudável e radiante.",
+  "facial1.jpg",
+  "facial2.jpg",
+  "https://www.youtube.com/embed/987654321"
+);
+//Depilação a laser
+const hairRemoval = new Service(
+  987654321,
+  "Depilação a Laser",
+  199.99,
+  45,
+  "dias úteis",
+  "9:00 ~ 20:00",
+  "Reduza permanentemente os pelos indesejados com nossa depilação a laser avançada.",
+  "Nossa depilação a laser é um procedimento altamente eficaz para eliminar permanentemente os pelos indesejados. Envolve a aplicação de pulsos de laser que danificam os folículos capilares, impedindo o crescimento futuro dos pelos.",
+  "Os benefícios da depilação a laser incluem uma pele mais suave e livre de pelos, reduzindo a necessidade de depilação frequente. Além disso, a pele fica menos irritada em comparação com a depilação tradicional.",
+  "Os resultados da depilação a laser são duradouros, com uma redução permanente dos pelos na área tratada. Você pode desfrutar de uma pele suave e livre de pelos por um longo período.",
+  "hairRemoval1.jpg",
+  "hairRemoval2.jpg",
+  "https://www.youtube.com/embed/123456789"
+);
+
 //Show Navigation bar
 function showNavbar(folderMain){
   const body = document.body;
@@ -31,7 +77,7 @@ function showNavbar(folderMain){
   nav.id = "topnavbar";
   //Links
   //Sthetics
-  createNavLink((folderMain) ? ("index.html#header") : ("../index.html#header"),"Sthetics",nav);
+  createNavLink((folderMain) ? ("index.html") : ("../index.html"),"Sthetics",nav);
   //Services
   createNavLink((folderMain) ? ("#services") : ("../index.html#services"),"Serviços",nav);
   // Company
@@ -47,12 +93,6 @@ function showNavbar(folderMain){
   });
   const iconImg = showElement("i",icon);
   iconImg.className = "fa fa-bars";
-}
-//Create navigation bar link
-function createNavLink(link, text, parentElement){
-  const element = showElement("a",parentElement);
-  element.href = link;
-  element.textContent = text;
 }
 //Show footer
 function showFooter(folderMain){
@@ -127,6 +167,19 @@ function showFooter(folderMain){
   disclaimerText.classList.add("text-center");
   disclaimerText.innerHTML = "Este website não é comercial. <br> Foi criado com o objetivo de praticar desenvolvimento web";
 }
+//Create navigation bar link
+function createNavLink(link, text, parentElement){
+  const element = showElement("a",parentElement);
+  element.href = link;
+  element.textContent = text;
+}
+//Create and append elements
+function showElement(elementTag, parentElement){
+  const element = document.createElement(elementTag);
+  parentElement.appendChild(element);
+  // console.log(elementTag + " was added in " + parentElement);
+  return element;
+}
 var mainFolder;
 //Create footer contacts
 function createContact(link,iconSrc,iconAlt,text,parentElement){
@@ -136,67 +189,27 @@ function createContact(link,iconSrc,iconAlt,text,parentElement){
   element.target = '_blank';
   //element icon
   const elementIcon = showElement("img",element);
-  elementIcon.src = (mainFolder) ? ("media/"+iconSrc) : ("../media/"+iconSrc);
+  elementIcon.src = (mainFolder) ? ("media/contacts/"+iconSrc) : ("../media/contacts/"+iconSrc);
   elementIcon.alt = iconAlt;
   elementIcon.classList.add("link-icon");
   const elementText = showElement("span",element);
   elementText.textContent = text;
   const lineBreak = showElement("br",parentElement);
 }
-//Create service card
-function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,priceText,text){
-  //Row element
-  const row = document.getElementById(rowId);
-  //Column container
-  const col = showElement("div", row);
-  col.classList.add("col-lg-3");
-  //Card
-  const card = showElement("div",col);
-  card.classList.add("card");
-  //Img link
-  const imgLink = showElement("a",card);
-  imgLink.href = "services/index.html?id="+link;
-  //Img
-  const img = showElement("img",imgLink);
-  img.src = "media/"+imgSrc;
-  img.alt = imgAlt;
-  img.classList.add("card-img-top");
-  //Card body
-  const body = showElement("div",card);
-  body.classList.add("card-body");
-  //Card title
-  const title = showElement("h5",body);
-  title.classList.add("card-title");
-  title.classList.add("text-center");
-  title.textContent = titleText+" - "+priceText;
-  //Card text
-  const cardText = showElement("p",body);
-  cardText.classList.add("card-text");
-  cardText.classList.add("text-justify");
-  cardText.textContent = text;
-  //Card buttons container
-  const buttonsContainer = showElement("div",body);
-  buttonsContainer.classList.add("d-flex");
-  //Card details
-  const detailsContainer = showElement("div",buttonsContainer);
-  detailsContainer.classList.add("col-lg-6");
-  detailsContainer.classList.add("col-sm-6");
-  detailsContainer.classList.add("text-left");
-  const details = showElement("a",detailsContainer);
-  details.classList.add("btn");
-  details.classList.add("btn-info");
-  details.classList.add("text-left");
-  details.textContent = "Detalhes";
-  details.href = "services/index.html?id="+link;
-  //Card order
-  const orderContainer = showElement("div",buttonsContainer);
-  orderContainer.classList.add("col-lg-6");
-  orderContainer.classList.add("col-sm-6");
-  orderContainer.classList.add("text-right");
-  const order = showElement("a",orderContainer);
-  order.classList.add("btn");
-  order.classList.add("btn-success");
-  order.classList.add("text-right");
-  order.textContent = "Orçamento";
-  order.href = "services/index.html?id="+link+"&order=true";
+//Mobile navbar
+var linksToggle = false;
+function navbarLinks(){
+  const links = document.querySelectorAll(".topnav a:not(:first-child):not(:last-child)");
+  console.log(links);
+  if(!linksToggle){
+    links.forEach(function(link){
+      link.style.display = "block";
+    });
+    linksToggle = true;
+  }else{
+    links.forEach(function(link){
+      link.style.display = "none";
+    });
+    linksToggle = false;
+  }
 }

@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <script src="../index.js"></script>
+    <script src="index.js"></script>
     <title>Sthetics</title>
   </head>
   <body class="m-0">
@@ -14,6 +16,54 @@
     <script>
       showNavbar(false);
     </script>
+    <!-- Service -->
+    <section class="container">
+      <!-- Title -->
+      <h2 class="text-center" id="service-name">Nome do Serviço</h2>
+      <!-- Content -->
+      <div class="row">
+        <!-- Informations -->
+        <div class="col-lg-6 col-sm-12 service-info">
+          <h3 class="title">Informações</h3>
+          <ul>
+            <li>Preço: <span id="service-price"></span> </li>
+            <li>Tempo de realização: <span id="service-time"></span> </li>
+            <li>Dias de atendimento: <span id="service-days"></span> </li>
+            <li>Horários de atendimento: <span id="service-hours"></span> </li>
+          </ul>
+          <p class="text-justify">OBS: O preço do serviço pode mudar dependendo do tempo de realização, dia de atendimento, doutor e forma de pagamento</p>
+        </div>
+        <!-- Details -->
+        <div class="col-lg-6 col-sm-12 service-details">
+          <h3 class="title">Detalhes</h3>
+          <p class="text-justify" id="service-details">
+            O nosso serviço de clareamento dental é projetado para trazer um sorriso mais brilhante e confiante para os nossos pacientes. Entendemos o quão importante é a aparência do seu sorriso e estamos dedicados a ajudá-lo a alcançar dentes mais brancos e radiantes.
+          </p>
+        </div>
+      </div>
+      <!-- Images -->
+      <div class="row mb-0">
+        <!-- Benefícios -->
+        <div class="col-lg-6 col-sm-12">
+          <h3 class="title">Benefícios</h3>
+          <p class="text-justify">O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.</p>
+          <img class="service-img" src="../media/2055208.1.jpg" alt="" id="service-img1">
+        </div>
+        <!-- Resultados -->
+        <div class="col-lg-6 col-sm-12">
+          <h3 class="title">Resultados</h3>
+          <p class="text-justify">O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.</p>
+          <img class="service-img" src="../media/2055208.2.jpg" alt="" id="service-im2">
+        </div>
+      </div>
+      <!-- Video -->
+      <div class="video-container">
+        <h3 class="title">Vídeo Relacionado</h3>
+        <div class="video-container text-center">
+            <iframe src="https://www.youtube.com/embed/UvRmgtRGxiA" allowfullscreen id="service-iframe"></iframe>
+        </div>
+      </div>
+    </section>
     <!-- Footer -->
     <script>
       showFooter(false);

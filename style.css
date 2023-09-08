@@ -1,3 +1,6 @@
+* {
+  font-family: Arial, sans-serif;
+}
 /* Indent texts */
 p {
   text-indent: 1rem;
@@ -6,10 +9,11 @@ p {
 .topnav {
   display: block;
   overflow: hidden;
+  background-color: #f0f0f0;
 }
 /* Navbar links */
 .topnav a {
-  font-size: 17px;
+  font-size: 24px;
   padding: 1rem;
   text-decoration: none;
   color: black;
@@ -30,8 +34,12 @@ div.row > * {
 }
 /* Normal */
 @media screen and (min-width: 600px){
-  .topnav a {
+  /* .topnav a {
     float: left;
+  } */
+  .topnav {
+    text-align: center;
+    padding: 1rem;
   }
   .topnav a:last-child { /*Hide the navbar button*/
     display: none;
@@ -41,13 +49,14 @@ div.row > * {
   }
   .carousel-container {
     overflow: hidden;
+    width: 60%;
   }
   .carousel-container h2 {
     text-align: center;
     margin: 1rem 0;
   }
   .carousel img {
-    height: 15rem;
+    height: 18rem;
   }
   
 }
@@ -71,6 +80,9 @@ div.row > * {
   .header p:last-child {
     display: none;
   }
+  .carousel-container {
+    width: 95%;
+  }
   .carousel img {
     width: 80%;
     height: 10rem;
@@ -90,8 +102,11 @@ div.row > * {
   border-radius: 8px;
   padding: 0.5rem;
 }
+.carousel-container {
+  margin: 0 auto;
+  display: block;
+}
 .carousel img {
-  width: 80%;
   border-radius: 8px;
   border: solid 1px black;
   cursor: pointer;
@@ -99,7 +114,6 @@ div.row > * {
 .carousel-inner {
   display: block;
   margin: 0 auto;
-  width: 80%;
 }
 .card-img-top {
   height: 200px;
