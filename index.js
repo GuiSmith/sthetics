@@ -70,6 +70,7 @@ const hairRemoval = new Service(
 );
 //Show Navigation bar
 function showNavbar(){
+  console.log(mainFolder);
   const body = document.body;
   //Nav element
   const nav = showElement("nav",body);
@@ -77,9 +78,9 @@ function showNavbar(){
   nav.id = "topnavbar";
   //Links
   //Sthetics
-  createNavLink((mainFolder) ? ("sthetics/index.html") : ("../index.html"),"Sthetics",nav);
+  createNavLink((mainFolder) ? ("index.html") : ("../index.html"),"Sthetics",nav);
   //Services
-  createNavLink((mainFolder) ? ("sthetics/index.html#services") : ("../index.html#services"),"Serviços",nav);
+  createNavLink((mainFolder) ? ("index.html#services") : ("../index.html#services"),"Serviços",nav);
   // Company
   createNavLink("#","Empresa",nav);
   // Contacts
