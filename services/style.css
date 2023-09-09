@@ -1,10 +1,13 @@
 body {
     background-color: #f0f0f0;
 }
-section {
-    width: 80%;
+section, iframe {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 1rem 2rem;
+}
+.col-lg-6 > * {
+    width: 90%;
+    margin: 0 auto;
+    display: block;
 }
 .title {
     text-align: center;
@@ -12,28 +15,57 @@ section {
 .service-info li, p {
     font-size: 20px;
 }
+
 .service-img {
-    width: 100%;
-    height: 20rem;
+    
     border-radius: 8px;
 }
 .video-container {
     text-align: center;
+    outline: none;
     margin: 1rem;
 }
 iframe {
     text-align: center;
-    border: solid 1px black;
     border-radius: 8px;
 }
 
 @media screen and (max-width: 600px){
+    section {
+        width: 100%;
+    }
+    .col-lg-6 {
+        padding: 0;
+    }
+    .hidden-desktop {
+        display: block;
+    }
+    .show-desktop {
+        display: none;
+    }
+    .service-img {
+        height: 10rem;
+        width: 100%;
+    }
     iframe {
         width: 100%;
         height: 200px;
     }
 }
 @media screen and (min-width: 600px){
+    section {
+        width: 70%;
+        margin: 0 auto;
+        display: block;
+        padding: 1rem;
+    }
+    .hidden-desktop {
+        display: none;
+    }
+    .service-img {
+        height: 20rem;
+        width: 90%;
+    }
     iframe {
         width: 80%;
         height: 500px;

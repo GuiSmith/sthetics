@@ -20,6 +20,8 @@ setContent("service-benefits","text",service.benefits);
 setContent("service-results","text",service.results);
 setContent("service-img1","src","../media/services/"+service.img1);
 setContent("service-img2","src","../media/services/"+service.img2);
+setContent("hidden-service-img1","src","../media/services/"+service.img1);
+setContent("hidden-service-img2","src","../media/services/"+service.img2);
 setContent("service-iframe","iframe",service.iframe);
 
 function setContent(elementId,attribute,value){

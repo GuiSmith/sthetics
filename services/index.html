@@ -17,43 +17,62 @@
       showNavbar();
     </script>
     <!-- Service -->
-    <section class="container">
+    <section>
       <!-- Title -->
       <h2 class="text-center" id="service-name">Nome do Serviço</h2>
-      <!-- Content -->
+      <!-- Informations and Details -->
       <div class="row">
         <!-- Informations -->
         <div class="col-lg-6 col-sm-12 service-info">
-          <h3 class="title">Informações</h3>
-          <ul>
-            <li>Preço: <span id="service-price"></span> </li>
-            <li>Tempo de realização: <span id="service-time"></span> </li>
-            <li>Dias de atendimento: <span id="service-days"></span> </li>
-            <li>Horários de atendimento: <span id="service-day-hours"></span> </li>
-          </ul>
-          <p class="text-justify">OBS: O preço do serviço pode mudar dependendo do tempo de realização, dia de atendimento, doutor e forma de pagamento</p>
+          <!-- Informations -->
+          <div>
+            <h3 class="title">Informações</h3>
+            <ul>
+              <li>Preço: <span id="service-price"></span> </li>
+              <li>Tempo de realização: <span id="service-time"></span> </li>
+              <li>Dias de atendimento: <span id="service-days"></span> </li>
+              <li>Horários de atendimento: <span id="service-day-hours"></span> </li>
+            </ul>
+            <p class="text-justify">OBS: O preço do serviço pode mudar dependendo do tempo de realização, dia de atendimento, doutor e forma de pagamento</p>
+          </div>
         </div>
-        <!-- Details -->
-        <div class="col-lg-6 col-sm-12 service-procedure">
-          <h3 class="title">Detalhes</h3>
-          <p class="text-justify" id="service-details">
-            O nosso serviço de clareamento dental é projetado para trazer um sorriso mais brilhante e confiante para os nossos pacientes. Entendemos o quão importante é a aparência do seu sorriso e estamos dedicados a ajudá-lo a alcançar dentes mais brancos e radiantes.
-          </p>
+        <!-- Details and Results-->
+        <div class="col-lg-6 col-sm-12 service-procedure" >
+          <!-- Details -->
+          <div>
+            <h3 class="title">Detalhes</h3>
+            <p class="text-justify" id="service-details">
+              O nosso serviço de clareamento dental é projetado para trazer um sorriso mais brilhante e confiante para os nossos pacientes. Entendemos o quão importante é a aparência do seu sorriso e estamos dedicados a ajudá-lo a alcançar dentes mais brancos e radiantes.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Benefits and results -->
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <!-- Benefícios -->
+          <div>
+            <h3 class="title">Benefícios</h3>
+            <p class="text-justify" id="service-benefits">O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.</p>
+            <img class="hidden-desktop service-img" src="" alt="" id="hidden-service-img1">
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <!-- Results -->
+          <div>
+            <h3 class="title">Resultados</h3>
+            <p class="text-justify" id="service-results">O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.</p>
+            <img class="hidden-desktop service-img" src="" alt="" id="hidden-service-img2">
+          </div>
         </div>
       </div>
       <!-- Images -->
-      <div class="row mb-0">
-        <!-- Benefícios -->
+      <div class="row">
         <div class="col-lg-6 col-sm-12">
-          <h3 class="title">Benefícios</h3>
-          <p class="text-justify" id="service-benefits">O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.</p>
-          <img class="service-img" src="" alt="" id="service-img1">
+          <img class="show-desktop service-img" src="" alt="" id="service-img1">
         </div>
-        <!-- Resultados -->
         <div class="col-lg-6 col-sm-12">
-          <h3 class="title">Resultados</h3>
-          <p class="text-justify" id="service-results">O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.</p>
-          <img class="service-img" src="" alt="" id="service-img2">
+          <img class="show-desktop service-img" src="" alt="" id="service-img2">
         </div>
       </div>
       <!-- Video -->
