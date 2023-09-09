@@ -4,8 +4,7 @@ body {
 section {
     background-color: white;
 }
-section, article {
-    width: 70%;
+section {
     margin: 0 auto;
     display: block;
     padding: 1rem;
@@ -24,6 +23,9 @@ section, input, select, textarea {
     font-size: 20px;
 }
 @media screen and (min-width: 600px){
+    section {
+        width: 70%;
+    }
     #desktop-button {
         display: block;
     }
@@ -32,6 +34,9 @@ section, input, select, textarea {
     }
 }
 @media screen and (max-width: 600px){
+    section {
+        width: 100%;
+    }
     #desktop-button {
         display: none;
     }

@@ -3,13 +3,13 @@ const queryString = window.location.search; //Setting the current url
 const params = new URLSearchParams(queryString); //new Object
 const id = params.get('id'); //getting the ID from the URL
 var service; //this will store our current service
-//Use of "for of" to break the iteration when needed
-for (const object of Service.services) {
+for (const object of Service.services) { //Use of "for of" to break the iteration when needed
     if(object.id == id){
         service = object;
         break;
     }
 }
+//Getting the service name
 var serviceName = document.getElementById("service-name");
 serviceName.textContent = service.name;
 //List of states and cities
@@ -58,9 +58,10 @@ $(document).ready(function() {
         }
     });
 });
-//Setting up title and placeholder
+//Setting up inputs' titles and placeholders
 const labels = document.querySelectorAll(".form-label");
 const inputs = document.querySelectorAll(".form-control");
+//Setting up inputs' placeholders 
 inputs.forEach(function(input){
     if(input.id != "budget-input"){
         input.placeholder = "Digite aqui...";
@@ -69,11 +70,13 @@ inputs.forEach(function(input){
         });
     }
 });
+//Setting up inputs' titles
 for(var i=0;i<labels.length;i++){
-    if(inputs[i].id != "obs-input" && inputs[i].id != "budget-input" && inputs[i].id != "number-input"){
+    if(inputs[i].title == ""){
         inputs[i].title = "Digite seu " + labels[i].textContent.toLowerCase();
     }
 }
+//Updates the textarea with the user's data
 function updateBudget(){
     let labels = document.querySelectorAll(".form-label");
     let inputs = document.querySelectorAll(".form-control");
@@ -102,13 +105,17 @@ function updateBudget(){
     budgetText += "\nPedido via guismith.github.io/sthetics";
     budget.textContent = budgetText;
 }
-
+//Sends the details to the developer's whatsapp
 function submitForm(){
-    const number = document.getElementById("number-input").value;
+    /*
+    The code in comments sends the message to the number the user informed
+    const number = "55" + document.getElementById("number-input").value;
     const budgetText = document.getElementById("budget-input").value;
+    */
     var link = "https://wa.me/";
     var whatsText = budgetText.replace(/ /g, "%20").replace(/\n/g,"%0A");
-    link += number+ "?text=" +whatsText;
+    link += "5549991145655?text=" + whatsText;
+    
     console.log(link);
     window.open(link, "_blank");
     return false;
