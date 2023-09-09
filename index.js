@@ -70,7 +70,7 @@ const hairRemoval = new Service(
 );
 //Show Navigation bar
 function showNavbar(){
-  console.log(mainFolder);
+  // console.log(mainFolder);
   const body = document.body;
   //Nav element
   const nav = showElement("nav",body);

@@ -16,6 +16,7 @@ setContent("service-time", "text",service.time);
 setContent("service-days", "text",service.days);
 setContent("service-day-hours", "text",service.dayHours);
 setContent("service-details","text",service.details);
+setContent("budget-link","href","../budget/index.html?id="+service.id);
 setContent("service-benefits","text",service.benefits);
 setContent("service-results","text",service.results);
 setContent("service-img1","src","../media/services/"+service.img1);
@@ -35,6 +36,9 @@ function setContent(elementId,attribute,value){
             break;
         case "src":
             element.src = value;
+            break;
+        case "href":
+            element.href = value;
             break;
         default:
             break;

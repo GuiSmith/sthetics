@@ -56,17 +56,19 @@ iframe {
     }
 }
 @media screen and (min-width: 600px){
-    section {
+    section, article {
         width: 70%;
         margin: 0 auto;
         display: block;
         padding: 1rem;
+        border-radius: 15px;
     }
     .hidden-desktop {
         display: none;
     }
     .service-img {
-        height: 20rem;
+        height: 15rem;
+        max-height: 15rem;
         width: 90%;
     }
     iframe {

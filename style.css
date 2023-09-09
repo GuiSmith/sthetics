@@ -57,6 +57,7 @@ div.row > * {
   }
   .carousel img {
     height: 18rem;
+    max-height: 18rem;
   }
   
 }
@@ -86,6 +87,7 @@ div.row > * {
   .carousel img {
     width: 80%;
     height: 10rem;
+    max-height: 10rem;
   }
   .carousel-caption h5 span {
     font-size: 10px;

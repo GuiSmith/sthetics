@@ -1,0 +1,41 @@
+body {
+    background-color: #f0f0f0;
+}
+section {
+    background-color: white;
+}
+section, article {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    padding: 1rem;
+    border-radius: 15px;
+}
+label {
+    font-size: 20px;
+}
+section, input, select, textarea {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+#desktop-button {
+    font-weight: bolder;
+    font-size: 20px;
+}
+@media screen and (min-width: 600px){
+    #desktop-button {
+        display: block;
+    }
+    #mobile-button {
+        display: none;
+    }
+}
+@media screen and (max-width: 600px){
+    #desktop-button {
+        display: none;
+    }
+    #mobile-button {
+        display: block;
+    }
+}
