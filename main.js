@@ -1,5 +1,5 @@
 //Create service card
-function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,price,text){
+function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,price,text, disabled = false){
     //Row element
     const row = document.getElementById(rowId);
     //Column container
@@ -11,6 +11,7 @@ function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,price,text){
     //Img link
     const imgLink = showElement("a",card);
     imgLink.href = "services/index.html?id="+link;
+    (disabled) ? (imgLink.classList.add("disabled-links")) : ("");
     //Img
     const img = showElement("img",imgLink);
     img.src = "media/services/"+imgSrc;
@@ -43,6 +44,7 @@ function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,price,text){
     details.classList.add("text-left");
     details.textContent = "Detalhes";
     details.href = "services/index.html?id="+link;
+    (disabled) ? (details.classList.add("disabled-links")) : ("");
     //Card order
     const orderContainer = showElement("div",buttonsContainer);
     orderContainer.classList.add("col-lg-6");
@@ -53,7 +55,8 @@ function createServiceCard(rowId,link,imgSrc,imgAlt,titleText,price,text){
     order.classList.add("btn-success");
     order.classList.add("text-right");
     order.textContent = "Orçamento";
-    order.href = "services/index.html?id="+link+"&order=true";
+    order.href = "budget/index.html?id="+link;
+    (disabled) ? (order.classList.add("disabled-links")) : ("");
 }
 
 function setSlides(){

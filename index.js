@@ -82,9 +82,11 @@ function showNavbar(){
   //Services
   createNavLink((mainFolder) ? ("index.html#services") : ("../index.html#services"),"Serviços",nav);
   // Company
-  createNavLink("#","Empresa",nav);
+  createNavLink((mainFolder) ? ("developer/index.html") : ("../developer/index.html"),"Desenvolvedor",nav);
   // Contacts
-  createNavLink("#footer","Contatos",nav);
+  createNavLink((mainFolder) ? ("developer/index.html#contacts") : ("../developer/index.html#contacts"),"Contato",nav);
+  //Reviews
+  createNavLink((mainFolder) ? ("reviews/index.html") : ("../reviews/index.html"),"Depoimentos",nav);
   // Icon
   const icon = showElement("a",nav);
   icon.href = "#";

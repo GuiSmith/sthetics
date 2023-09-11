@@ -1,0 +1,35 @@
+body {
+    background-color: #f0f0f0;
+}
+section {
+    background-color: white;
+    margin: 0 auto;
+    display: block;
+    padding: 1rem;
+    border-radius: 15px;
+}
+section p, li {
+    font-size: 20px;
+    text-align: justify;
+}
+iframe {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+#contacts {
+    margin: 1rem 0;
+}
+#contacts label {
+    font-size: 20px;
+}
+@media screen and (min-width: 600px){
+    section {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 600px){
+    section {
+        width: 100%;
+    }
+}

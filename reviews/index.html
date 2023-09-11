@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>mainFolder = false</script>
+    <script src="../index.js"></script>
+    <title>Sthetics</title>
+  </head>
+  <body class="m-0">
+    <!-- Navbar -->
+    <script>
+      showNavbar();
+    </script>
+    <!-- Reviews -->
+    <section>
+      <!-- Title -->
+        <div class="text-center">
+          <h2>Depoimentos</h2>
+          <h4>Faça sua avaliação!</h4>
+        </div>
+        <!-- Reviews -->
+        <div class="reviews">
+          <!-- Maria S. -->
+          <div class="review">
+            <h3>Maria S.</h3>
+            <p>
+              Estou muito satisfeita com os serviços do Sthetics! A minha experiência com a equipe foi incrível. Eles são profissionais experientes e amigáveis, e o resultado final da minha sessão de tratamento estético superou as minhas expectativas. Com certeza, voltarei para mais!
+            </p>
+          </div>
+          <!-- Carlos R. -->
+          <div class="review">
+            <h3>Carlos R.</h3>
+            <p>
+              O Sthetics se tornou o meu destino número um para cuidados com a pele e tratamentos de beleza. A equipe é altamente qualificada e atenciosa. Fui recebido com um ótimo atendimento desde a minha primeira visita. Recomendo fortemente!
+            </p>
+          </div>
+          <!-- Luana M. -->
+          <div class="review">
+            <h3>Luana M.</h3>
+            <p>
+              Fiquei surpresa com a variedade de serviços oferecidos pelo Sthetics. Encontrei tudo o que precisava para cuidar da minha pele e melhorar a minha aparência. Os resultados são visíveis, e estou mais confiante do que nunca. Obrigada, Sthetics!
+            </p>
+          </div>
+          <!-- Rafael B. -->
+          <div class="review">
+            <h3>Rafael B.</h3>
+            <p>
+              Sthetics é o lugar onde finalmente encontrei soluções eficazes para as minhas preocupações estéticas. O ambiente é relaxante, e a equipe é gentil e profissional. Minhas sessões de tratamento foram indiscutivelmente transformadoras. Mal posso esperar para a próxima!
+            </p>
+          </div>
+          <!-- Fernanda L. -->
+          <div class="review">
+            <h3>Fernanda L.</h3>
+            <p>
+              Sou cliente do Sthetics há algum tempo, e sempre saio de lá sentindo-me renovada. As massagens e os tratamentos faciais são excelentes para aliviar o estresse e cuidar da minha pele. É um refúgio de bem-estar que eu recomendo a todos!
+            </p>
+          </div>
+        </div>
+        <div class="write-review" class="jumbotron">
+          <!-- Title -->
+          <h2 class="text-center">Qual sua opinião?</h2>
+          <!-- Form -->
+          <form action="#" method="GET" class="row">
+            <!-- Name -->
+            <div class="col-lg-3 col-sm-12">
+              <div class="form-group">
+                <label for="name-input" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="name-input" placeholder="Digite aqui..." title="Digite seu nome" autofocus>
+              </div>
+            </div>
+            <!-- Service -->
+            <div class="col-lg-3 col-sm-12">
+              <div class="form-group">
+                <label for="service-input" class="form-label">Serviço</label>
+                <input type="text" class="form-control" id="service-input" placeholder="Digite aqui..." title="Digite o serviço que contratou">
+              </div>
+            </div>
+            <!-- Review -->
+            <div class="col-lg-4 col-sm-12">
+              <div class="form-group">
+                <label for="review-input" class="form-label">Avaliação</label>
+                <input type="text" class="form-control" id="review-input" placeholder="Digite aqui..." title="Digite sua avaliação">
+              </div>
+            </div>
+            <!-- Submit -->
+            <div class="col-lg-2 col-sm-12">
+              <div class="form-group">
+                <label class="form-label" id="submit-label">Enviar</label>
+                <button type="button" class="form-control btn btn-success" id="submit-button" onclick="submitReview()">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </section>
+    <!-- Footer -->
+    <script>showFooter();</script>
+    <script src="index.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

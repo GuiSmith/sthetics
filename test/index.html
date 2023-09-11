@@ -2,66 +2,15 @@
 <html>
 <head>
     <title>City Finder</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <label for="state-select">Select a Brazilian state (UF):</label>
-    <select id="state-select">
-        <!-- UFs will be dynamically added here -->
-    </select>
-
-    <label for="city-select">Select a city:</label>
-    <select id="city-select">
-        <!-- Cities will be dynamically added here -->
-    </select>
-
-    <script>
-        $(document).ready(function() {
-            // Populate the state (UF) select element
-            const stateSelect = $('#state-select');
-            $.ajax({
-                url: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
-                method: 'GET',
-                success: function(states) {
-                    states.forEach(function(state) {
-                        stateSelect.append($('<option>', {
-                            value: state.sigla,
-                            text: state.nome
-                        }));
-                    });
-                },
-                error: function() {
-                    stateSelect.html('<option value="">Error fetching states</option>');
-                }
-            });
-
-            // Listen for state selection changes
-            stateSelect.on('change', function() {
-                const selectedState = $(this).val();
-                const citySelect = $('#city-select');
-                citySelect.empty(); // Clear city options
-
-                if (selectedState) {
-                    const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`;
-                    $.ajax({
-                        url: apiUrl,
-                        method: 'GET',
-                        success: function(cities) {
-                            cities.forEach(function(city) {
-                                citySelect.append($('<option>', {
-                                    value: city.nome,
-                                    text: city.nome
-                                }));
-                            });
-                        },
-                        error: function() {
-                            citySelect.html('<option value="">Error fetching cities</option>');
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+    <div class="jumbotron" style="border:solid 1px black">
+        <h1>Welcome to Our Website</h1>
+        <p>We offer top-quality products and services to meet your needs.</p>
+        <a class="btn btn-primary" href="#" role="button">Learn More</a>
+    </div>    
 </body>
 </html>

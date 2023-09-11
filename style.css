@@ -32,6 +32,11 @@ div.row {
 div.row > * {
   margin-top: 1rem;
 }
+.disabled-links {
+  pointer-events: none;
+  color: grey;
+  opacity: 0.5;
+}
 /* Normal */
 @media screen and (min-width: 600px){
   /* .topnav a {

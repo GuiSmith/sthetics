@@ -4,12 +4,17 @@ const params = new URLSearchParams(queryString); //new Object
 const id = params.get('id'); //getting the ID from the URL
 var service; //this will store our current service
 //Use of "for of" to break the iteration when needed
-for (const object of Service.services) {
-    if(object.id == id){
-        service = object;
-        break;
+if(id === null){
+    window.location.href = "../index.html";
+}else{
+    for (const object of Service.services) {
+        if(object.id == id){
+            service = object;
+            break;
+        }
     }
 }
+
 setContent("service-name","text",service.name);
 setContent("service-price","text",service.price);
 setContent("service-time", "text",service.time);
