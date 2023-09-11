@@ -64,7 +64,7 @@ function setSlides(){
         slides[i].alt = Service.services[i].name + " - " + Service.services[i].img1;
         slides[i].addEventListener("click", (function (index) {
             return function () {
-                window.location.href = "services/index.html?page=" + Service.services[index].id;
+                window.location.href = "services/index.html?id=" + Service.services[index].id;
             };
         })(i));
         captions[i].textContent = Service.services[i].name;

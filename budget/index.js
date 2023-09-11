@@ -110,8 +110,8 @@ function submitForm(){
     /*
     The code in comments sends the message to the number the user informed
     const number = "55" + document.getElementById("number-input").value;
-    const budgetText = document.getElementById("budget-input").value;
     */
+    const budgetText = document.getElementById("budget-input").value;
     var link = "https://wa.me/";
     var whatsText = budgetText.replace(/ /g, "%20").replace(/\n/g,"%0A");
     link += "5549991145655?text=" + whatsText;
