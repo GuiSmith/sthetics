@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>mainFolder = false</script>
+    <script src="../index.js"></script>
+    <title>Sthetics</title>
+  </head>
+  <body class="m-0">
+    <!-- Navbar -->
+    <script>
+      showNavbar();
+    </script>
+    <!-- Budget Form -->
+    <section>
+        <!-- Title -->
+        <h2 class="text-center">Orçamento de <span id="service-name"></span></h2>
+        <h4 class="text-center">Preencha os campos abaixo e entraremos em contato</h4>
+        <!-- Form -->
+        <form class="row" action="#" method="GET" autocomplete="off">
+            <!-- Name -->
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="name-input" class="form-label">Nome completo</label>
+                    <input type="text" class="form-control" id="name-input" name="name" required autofocus>
+                </div>
+            </div>
+            <!-- E-mail -->
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="email-input" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email-input" name="email" required>
+                </div>
+            </div>
+            <!-- Tel Number -->
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="number-input" class="form-label">Telefone</label>
+                    <input type="text" class="form-control" id="number-input" name="number" maxlength="11" pattern="[0-9]{13}" title="Digite seu número. Ex: 5549991145655" required >
+                    <small>Ex: 49991145655</small>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="address-input" class="form-label">Endereço</label>
+                    <input type="text" class="form-control" id="address-input" name="address" required>
+                </div>
+            </div>
+            <!-- UF -->
+            <div class="col-lg-3 col-sm-12">
+                <div class="form-group">
+                    <label for="state-select" class="form-label">Estado</label>
+                    <select name="UF" id="state-select" class="form-control" required></select>
+                </div>
+            </div>
+            <!-- City -->
+            <div class="col-lg-3 col-sm-12">
+                <div class="form-group">
+                    <label for="city-select" class="form-label">Cidade</label>
+                    <select name="city" id="city-select" class="form-control" required></select>
+                </div>
+            </div>
+            <!-- Service date -->
+            <div class="col-lg-3 col-sm-12">
+                <div class="form-group">
+                    <label for="date-input" class="form-label">Agendamento</label>
+                    <input type="date" id="date-input" class="form-control" required>
+                </div>
+            </div>
+            <!-- Service hours -->
+            <div class="col-lg-3 col-sm-12">
+                <div class="form-group">
+                    <label for="hours-input" class="form-label">Horário</label>
+                    <select name="hours" id="hours-input" class="form-control" required>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Service observations -->
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="obs-input" class="form-label">Observações importantes</label>
+                    <textarea name="obs" class="form-control" id="obs-input" cols="30" rows="10" title="Digite suas observações importantes"></textarea>
+                </div>
+            </div>
+            <!-- Bugdet Informations -->
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-group">
+                    <label for="budget-input" class="form-label">Resumo do orçamento</label>
+                    <textarea name="budget" class="form-control" id="budget-input" cols="30" rows="10" title="Resumo do orçamento" readonly></textarea>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="col-lg-12 col-sm-12">
+                <div class="form-group">
+                    <button id="desktop-button" type="button" class="btn btn-success form-control" onclick="submitForm()" >Clique aqui para finalizar o orçamento!</button>
+                    <button id="mobile-button" type="button" class="btn btn-success form-control" onclick="submitForm()" >Finalizar!</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <!-- Nome, E-mail, Telefone, Endereço,
+Cidade, UF, Data desejada para a realização do serviço, Observações -->
+    <!-- Footer -->
+    <script>showFooter();</script>
+    <script src="index.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
