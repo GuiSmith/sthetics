@@ -4,7 +4,7 @@ const params = new URLSearchParams(queryString); //new Object
 const id = params.get('id'); //getting the ID from the URL
 var service; //this will store our current service
 if(id === null){
-    window.location.href = "../index.html";
+    //window.location.href = "../index.html";
 }else{
     for (const object of Service.services) { //Use of "for of" to break the iteration when needed
         if(object.id == id){

@@ -133,6 +133,7 @@ footer {
 }
 footer a {
   text-decoration: none;
+  font-size: 26px;
   color: rgb(175, 171, 171);
 }
 footer a:hover {
@@ -146,5 +147,9 @@ footer a.instagram:hover {
   color: #E4405F;
 }
 footer .link-icon {
-  width: 25px;
+  width: 35px;
+}
+
+#card-model {
+  display: none;
 }

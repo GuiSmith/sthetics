@@ -1,7 +1,8 @@
 class Service {
   static services = [];
-  constructor(id, name, price, time, days, dayHours, description, details, benefits, results, img1, img2, iframe) {
+  constructor(id, textId, name, price, time, days, dayHours, description, details, benefits, results, img1, img2, iframe) {
     this.id = id;
+    this.textId = textId;
     this.name = name;
     let formattedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     this.price = formattedPrice;
@@ -23,6 +24,7 @@ class Service {
 //Clareamento dental
 const teeth = new Service(
   2055208,
+  'teeth',
   "Claramento dental",
   179.90,
   30,
@@ -39,6 +41,7 @@ const teeth = new Service(
 //Limpeza facial
 const facial = new Service(
   12913165261,
+  'facial',
   "Limpeza Facial",
   129.99,
   60,
@@ -55,6 +58,7 @@ const facial = new Service(
 //Depilação a laser
 const hairRemoval = new Service(
   987654321,
+  'hairRemoval',
   "Depilação a Laser",
   199.99,
   45,
@@ -68,131 +72,80 @@ const hairRemoval = new Service(
   "hairRemoval2.jpg",
   "MyQMb26pCwY"
 );
-//Show Navigation bar
-function showNavbar(){
-  // console.log(mainFolder);
-  const body = document.body;
-  //Nav element
-  const nav = showElement("nav",body);
-  nav.classList.add("topnav");
-  nav.id = "topnavbar";
-  //Links
-  //Sthetics
-  createNavLink((mainFolder) ? ("index.html") : ("../index.html"),"Sthetics",nav);
-  //Services
-  createNavLink((mainFolder) ? ("index.html#services") : ("../index.html#services"),"Serviços",nav);
-  // Company
-  createNavLink((mainFolder) ? ("developer/index.html") : ("../developer/index.html"),"Desenvolvedor",nav);
-  // Contacts
-  createNavLink((mainFolder) ? ("developer/index.html#contacts") : ("../developer/index.html#contacts"),"Contato",nav);
-  //Reviews
-  createNavLink((mainFolder) ? ("reviews/index.html") : ("../reviews/index.html"),"Depoimentos",nav);
-  // Icon
-  const icon = showElement("a",nav);
-  icon.href = "#";
-  icon.classList.add("icon");
-  icon.addEventListener("click", function(){
-    navbarLinks();
-  });
-  const iconImg = showElement("i",icon);
-  iconImg.className = "fa fa-bars";
+
+//Slides
+function setSlides(objList){
+  const slides = document.querySelectorAll(".carousel-item img");
+  const captions = document.querySelectorAll(".carousel-caption span");
+  for(var i=0;i<3;i++){
+      slides[i].src = "../media/services/"+objList[i].img1;
+      slides[i].alt = Service.services[i].name + " - " + objList[i].img1;
+      slides[i].addEventListener("click", (function (index) {
+          return function () {
+              window.location.href = "services/index.html?id=" + objList[index].id;
+          };
+      })(i));
+      captions[i].textContent = objList[i].name;
+  }
 }
-//Show footer
-function showFooter(){
-  const body = document.body;
-  //Footer
-  const footer = showElement("footer",body);
-  footer.id = "footer";
-  //Row
-  const row = showElement("div",footer);
-  row.classList.add("row");
-  //Contacts
-  const contacts = showElement("div",row);
-  contacts.classList.add("col-lg-5");
-  //Contacts title
-  const title = showElement("h2",contacts);
-  title.classList.add("text-center");
-  title.textContent = "Contatos";
-  //Contacts list
-  const linksContainer = showElement("div", contacts);
-  //Instagram
-  createContact(
-    "https://www.instagram.com/shimiters/",
-    "instagram.png",
-    "Instagram Icon",
-    "Instagram: Shimiters",
-    linksContainer
-  );
-  //Number
-  createContact(
-    "#",
-    "number.png",
-    "Number icon",
-    "Telefone: (49) 9 9823-5010",
-    linksContainer
-  );
-  //Whatsapp
-  createContact(
-    "https://wa.me/5549991145655",
-    "whatsapp.png",
-    "Whatsapp Icon",
-    "Whatsapp: (49) 9 9114-5655",
-    linksContainer
-  );
-  //E-mail
-  createContact(
-    "mailto:guilhermessmith2014@gmail.com?subject=About%20your%20latest%20project&body=Your%20Message",
-    "email.png",
-    "Email Icon",
-    "E-mail: guilhermessmith2014@gmail.com",
-    linksContainer
-  );
-  //Github
-  createContact(
-    "https://github.com/GuiSmith",
-    "github.png",
-    "Github Icon",
-    "Desenvolvedor: Guilherme Smith Dansiguer Rodrigues",
-    linksContainer
-  );
-  //Disclaimer
-  const disclaimer = showElement("div", row);
-  disclaimer.classList.add("col-lg-7");
-  const disclaimerTitle = showElement("h3",disclaimer);
-  disclaimerTitle.classList.add("text-center");
-  disclaimerTitle.textContent = "Declaração";
-  const disclaimerText = showElement("h5",disclaimer);
-  disclaimerText.classList.add("text-center");
-  disclaimerText.innerHTML = "Este website não é comercial. <br> Foi criado com o objetivo de praticar desenvolvimento web";
+
+//Navbar
+function printNavbar(elementId){
+  const nav = document.querySelector(`.${elementId}`);
+  nav.innerHTML = `
+  <a href="../main/index.html">Sthetics</a>
+  <a href="../main/index.html#services">Serviços</a>
+  <a href="../developer/index.html">Desenvolvedor</a>
+  <a href="../developer/index.html#contacts">Contato</a>
+  <a href="../reviews/index.html">Depoimentos</a>
+  <a href="#" class="icon"><i class="fa fa-bars"></i></a>
+  `;
 }
-//Create navigation bar link
-function createNavLink(link, text, parentElement){
-  const element = showElement("a",parentElement);
-  element.href = link;
-  element.textContent = text;
+printNavbar('topnav');
+
+//Footer
+function printFooter(){
+  const footer = document.querySelector(`footer`);
+  footer.innerHTML = `
+  <div class="row">
+    <div class="col-lg-5">
+      <h2 class="text-center">Contatos</h2>
+      <div>
+        <a class="contact-link" href="https://www.instagram.com/shimiters/" target="_blank">
+          <img src="../media/contacts/instagram.png" alt="Instagram Icon" class="link-icon">
+          <span>Instagram: Shimiters</span>
+        </a>
+        <br>
+        <a class="contact-link" href="#" target="_blank">
+          <img src="../media/contacts/number.png" alt="Number icon" class="link-icon">
+          <span>Telefone: (49) 9 9823-5010</span>
+        </a>
+        <br>
+        <a class="contact-link" href="https://wa.me/5549991145655" target="_blank">
+          <img src="../media/contacts/whatsapp.png" alt="Whatsapp Icon" class="link-icon">
+          <span>Whatsapp: (49) 9 9114-5655</span>
+        </a>
+        <br>
+        <a class="contact-link" href="mailto:guilhermessmith2014@gmail.com?subject=About%20your%20latest%20project&amp;body=Your%20Message" target="_blank">
+          <img src="../media/contacts/email.png" alt="Email Icon" class="link-icon">
+          <span>E-mail: guilhermessmith2014@gmail.com</span>
+        </a>
+        <br>
+        <a class="contact-link" href="https://github.com/GuiSmith" target="_blank">
+          <img src="../media/contacts/github.png" alt="Github Icon" class="link-icon">
+          <span>Desenvolvedor: Guilherme Smith Dansiguer Rodrigues</span>
+        </a>
+        <br>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <h3 class="text-center">Declaração</h3>
+      <h5 class="text-center">Este website não é comercial. <br> Foi criado com o objetivo de praticar desenvolvimento web</h5>
+    </div>
+  </div>
+  `;
 }
-//Create and append elements
-function showElement(elementTag, parentElement){
-  const element = document.createElement(elementTag);
-  parentElement.appendChild(element);
-  // console.log(elementTag + " was added in " + parentElement);
-  return element;
-}
-//Create footer contacts
-function createContact(link,iconSrc,iconAlt,text,parentElement){
-  const element = showElement("a",parentElement);
-  element.classList.add("contact-link");
-  element.href = link;
-  element.target = '_blank';
-  //element icon
-  const elementIcon = showElement("img",element);
-  elementIcon.src = (mainFolder) ? ("media/contacts/"+iconSrc) : ("../media/contacts/"+iconSrc);
-  elementIcon.alt = iconAlt;
-  elementIcon.classList.add("link-icon");
-  const elementText = showElement("span",element);
-  elementText.textContent = text;
-  const lineBreak = showElement("br",parentElement);
-}
+printFooter();
 //Mobile navbar
 var linksToggle = false;
 function navbarLinks(){
@@ -208,5 +161,33 @@ function navbarLinks(){
       link.style.display = "none";
     });
     linksToggle = false;
+  }
+}
+
+async function getServices(id = 0){
+  $response = await fetch(`../back/services.php?id=${id}`,{
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  $data = await $response.json();
+  //console.log($data);
+  return $data;
+}
+
+function setContent(query,attribute,value){
+  const element = document.querySelector(query);
+  console.log();
+  switch(attribute){
+      case "text":
+          element.textContent = value;
+          break;
+      case "iframe":
+          element.src = "https://www.youtube.com/embed/"+value;
+          break;
+      default:
+          element.setAttribute(attribute,value);
+          break;
   }
 }
