@@ -1,85 +1,10 @@
-class Service {
-  static services = [];
-  constructor(id, textId, name, price, time, days, dayHours, description, details, benefits, results, img1, img2, iframe) {
-    this.id = id;
-    this.textId = textId;
-    this.name = name;
-    let formattedPrice = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-    this.price = formattedPrice;
-    this.time = time;
-    this.days = days;
-    this.dayHours = dayHours;
-    this.description = description;
-    this.details = details;
-    this.benefits = benefits;
-    this.results = results;
-    this.img1 = img1;
-    this.img2 = img2;
-    this.iframe = iframe;
-    Service.services.push(this);
-    // console.log(this);
-  }
-}
-//Services
-//Clareamento dental
-const teeth = new Service(
-  2055208,
-  'teeth',
-  "Claramento dental",
-  179.90,
-  30,
-  "dias úteis",
-  "8:00 ~ 18h:00",
-  "Um sorriso mais brilhante e confiante em minutos!",
-  "O clareamento dental usa produtos com peróxido para deixar os dentes mais brancos. Pode ser feito no consultório ou em casa com moldeiras e gel clareador. Isso remove manchas e deixa o sorriso mais brilhante. Consulte um dentista para fazê-lo com segurança.",
-  "O clareamento dental oferece dentes mais brancos, aumenta a autoconfiança, rejuvenesce o sorriso e melhora a aparência geral. É um procedimento seguro, personalizado e não invasivo que proporciona um sorriso radiante e uma maior autoestima.",
-  "O clareamento dental proporciona resultados visíveis e dentes notavelmente mais brancos. Os pacientes podem esperar um sorriso mais brilhante, com manchas e descolorações significativamente reduzidas ou eliminadas. Isso resulta em um sorriso mais jovem.",
-  "teeth.jpg",
-  "teeth2.jpg",
-  "UvRmgtRGxiA"
-);
-//Limpeza facial
-const facial = new Service(
-  12913165261,
-  'facial',
-  "Limpeza Facial",
-  129.99,
-  60,
-  "dias úteis",
-  "10:00 ~ 19:00",
-  "Promova a saúde da pele com nossa limpeza facial profissional, removendo impurezas e reduzindo a acne.",
-  "A limpeza de pele envolve a remoção de impurezas, cravos e células mortas da pele. Geralmente, é feita com vapor para abrir os poros, seguido da extração manual das impurezas. Depois, aplicam-se produtos para acalmar e hidratar a pele. Isso melhora a textura e a saúde da pele. Consulte um esteticista para realizar o procedimento.",
-  "A limpeza de pele remove impurezas, cravos e células mortas, melhorando a textura da pele e estimulando a renovação celular. Isso resulta em uma pele mais suave, hidratada e com menos acne, promovendo uma aparência mais saudável e radiante.",
-  "Os resultados incluem uma pele mais suave, textura aprimorada, estimulação da renovação celular e redução da acne, proporcionando uma aparência mais saudável e radiante.",
-  "facial1.jpg",
-  "facial2.jpg",
-  "SIbMDdzBKU4"
-);
-//Depilação a laser
-const hairRemoval = new Service(
-  987654321,
-  'hairRemoval',
-  "Depilação a Laser",
-  199.99,
-  45,
-  "dias úteis",
-  "9:00 ~ 20:00",
-  "Reduza permanentemente os pelos indesejados com nossa depilação a laser avançada.",
-  "Nossa depilação a laser é um procedimento altamente eficaz para eliminar permanentemente os pelos indesejados. Envolve a aplicação de pulsos de laser que danificam os folículos capilares, impedindo o crescimento futuro dos pelos.",
-  "Os benefícios da depilação a laser incluem uma pele mais suave e livre de pelos, reduzindo a necessidade de depilação frequente. Além disso, a pele fica menos irritada em comparação com a depilação tradicional.",
-  "Os resultados da depilação a laser são duradouros, com uma redução permanente dos pelos na área tratada. Você pode desfrutar de uma pele suave e livre de pelos por um longo período.",
-  "hairRemoval1.jpg",
-  "hairRemoval2.jpg",
-  "MyQMb26pCwY"
-);
-
 //Slides
 function setSlides(objList){
   const slides = document.querySelectorAll(".carousel-item img");
   const captions = document.querySelectorAll(".carousel-caption span");
   for(var i=0;i<3;i++){
       slides[i].src = "../media/services/"+objList[i].img1;
-      slides[i].alt = Service.services[i].name + " - " + objList[i].img1;
+      slides[i].alt = objList[i].name + " - " + objList[i].img1;
       slides[i].addEventListener("click", (function (index) {
           return function () {
               window.location.href = "services/index.html?id=" + objList[index].id;
@@ -90,6 +15,7 @@ function setSlides(objList){
 }
 
 //Navbar
+printNavbar('topnav');
 function printNavbar(elementId){
   const nav = document.querySelector(`.${elementId}`);
   nav.innerHTML = `
@@ -101,9 +27,9 @@ function printNavbar(elementId){
   <a href="#" class="icon"><i class="fa fa-bars"></i></a>
   `;
 }
-printNavbar('topnav');
 
 //Footer
+printFooter();
 function printFooter(){
   const footer = document.querySelector(`footer`);
   footer.innerHTML = `
@@ -145,7 +71,7 @@ function printFooter(){
   </div>
   `;
 }
-printFooter();
+
 //Mobile navbar
 var linksToggle = false;
 function navbarLinks(){
@@ -164,18 +90,7 @@ function navbarLinks(){
   }
 }
 
-async function getServices(id = 0){
-  $response = await fetch(`../back/services.php?id=${id}`,{
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
-  $data = await $response.json();
-  //console.log($data);
-  return $data;
-}
-
+//Sets content of an element that fits the query
 function setContent(query,attribute,value){
   const element = document.querySelector(query);
   console.log();
@@ -189,5 +104,202 @@ function setContent(query,attribute,value){
       default:
           element.setAttribute(attribute,value);
           break;
+  }
+}
+
+//Checks if the given variable is empty or null
+function isEmpty(text){
+  if(text == "" || text == null){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+//Gets the value of an element
+function getValue(query){
+  return document.querySelector(query).value;
+}
+
+//Checks if an email is valid
+function validEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+//Removes all children of an element
+function removeChildren(element){
+  try {
+    while (element.firstChild){
+      element.removeChild(element.firstChild);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Create options
+async function createOptions(list,text,value,parent){
+  try {
+    list.forEach(item => {
+      itemOption = document.createElement('option');
+      itemOption.textContent = item[text];
+      itemOption.value = item[value];
+      parent.appendChild(itemOption);
+    });
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
+//Get States of Brazil
+async function getStates(){
+  const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+  const states = await response.json();
+  return states;
+}
+
+//Get cities of a brazilian state
+async function getCities(uf){
+  const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`);
+  const cities = await response.json();
+  return cities;
+}
+
+/*
+  Gets services
+  If no ID is given, it returns all services
+*/
+async function getServices(id = 0){
+  const response = await fetch(`../back/services.php?id=${id}`,{
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  //console.log($data);
+  return data;
+}
+
+//Gets an user
+async function getUser(email){
+  if(isEmpty(email)){
+    console.log(`Can't get user because email wasn't given`);
+    return false;
+  }
+  const response = await fetch(`../back/getUser.php?email=${email}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+  const data = await response.json();
+  return data;
+}
+
+//Creates an user
+async function setUser(name,email,feedbackElement){
+  //Setting up user data
+  let userData = {
+    name: name,
+    email: email
+  };
+  requiredData = ['name','email'];
+  let feedbackStatus = checkObj(userData,requiredData);
+  if(!feedbackStatus){
+    feedbackElement.textContent = "Preencha todos os campos!";
+    return false;
+  }
+  //Setting up options for the request
+  let options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userData)
+  };
+  //Requesting
+  try {
+    let request = await fetch('../back/setUser.php',options);
+    request = await request.json();
+    return request.status;
+  }catch(error){
+    console.error(error);
+  }
+}
+
+//Creates a contact
+async function setContact(contactObj,feedbackElement){
+  let user;
+  let requiredData = ['name','email','subject','body'];
+  let feedbackStatus = checkObj(contactObj,requiredData);
+  if(feedbackStatus){
+    if(validEmail(contactObj.email)){
+      feedbackElement.textContent = '';
+      feedbackElement.style.color = 'darkgreen';
+    }else{
+      feedbackElement.textContent = 'Informe um e-mail válido!';
+      feedbackElement.style.color = 'red';
+      return false;
+    }
+  }else{
+    feedbackElement.textContent = 'Preencha todos os campos!';
+    feedbackElement.style.color = 'red';
+    return false;
+  }
+  user = await checkUser(contactObj.name,contactObj.email,feedbackElement);
+  contactObj.user_id = user.id;
+  options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(contactObj)
+  };
+  let promise = await fetch('../back/setContact.php', options);
+  let contactRequest = await promise.json();
+  if(contactRequest.status == 'success'){
+    feedbackElement.textContent = 'Mensagem cadastrada com sucesso!';
+  }
+  return true;
+}
+
+//Checks if the object contains all needed properties and if any is empty or null
+async function checkObj(obj,properties){
+  //Checking if obj contains all needed properties
+  properties.forEach(property => {
+    if(!obj.hasOwnProperty(property)){
+      console.log(`Missing property: ${property}`);
+      return false;
+    }
+  });
+  //Checking if any data is empty
+  for (const property in obj) {
+    if(isEmpty(obj[property])){
+      console.log(`Property is empty: ${property}`);
+      return false;
+    }
+  }
+  return true;
+}
+
+//Checks if user exists and creates one if it doesn't
+async function checkUser(userName,userEmail){
+  let requestUser = await getUser(userEmail); //Selects user from the database
+  if(requestUser['status'] == 'failed'){ //Checks if the user exists
+    //console.log(`Couldn't get user: ${requestUser.message}`);
+    createUser = await setUser(userName,userEmail); //Creates user
+    if(createUser.status == 'failed'){
+      console.log(`Couldn't create user: ${createUser.message}`);
+    }else{
+      //console.log(`User created!`);
+      requestUser = await getUser(userEmail);
+      return requestUser.user;
+    }
+  }else{
+      return requestUser.user;
   }
 }

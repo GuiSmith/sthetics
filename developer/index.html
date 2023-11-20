@@ -61,37 +61,38 @@
           <div class="col-lg-6 col-sm-12">
               <!-- Name -->
               <div class="form-group">
-                  <label for="name-input" class="form-label">
+                  <label for="name-contact" class="form-label">
                       Nome
                   </label>
-                  <input type="text" class="form-control" id="name-input" placeholder="Digite aqui..." title="Digite seu nome">
+                  <input type="text" name="name-contact" class="form-control" id="name-contact" placeholder="Digite aqui..." title="Digite seu nome">
               </div>
               <!-- E-mail -->
               <div class="form-group">
-                  <label for="email-input" class="form-label">
+                  <label for="email-contact" class="form-label">
                       E-mail
                   </label>
-                  <input type="email" class="form-control" id="email-input" placeholder="Digite aqui..." title="Digite seu e-mail">
+                  <input type="email" name="email-contact" class="form-control" id="email-contact" placeholder="Digite aqui..." title="Digite seu e-mail">
               </div>
               <!-- Subject -->
               <div class="form-group">
-                  <label for="subject-input" class="form-label">
+                  <label for="subject-contact" class="form-label">
                       Assunto
                   </label>
-                  <input type="text" class="form-control" id="subject-input" placeholder="Digite aqui..." title="Digite seu assunto">
+                  <input type="text" name="subject-contact" class="form-control" id="subject-contact" placeholder="Digite aqui..." title="Digite seu assunto">
               </div>
           </div>
           <!-- Mensagem -->
           <div class="col-lg-6 col-sm-12">
               <div class="form-group">
-                  <label for="body-input" class="form-label">Mensagem</label>
-                  <textarea name="body" id="body-input" cols="30" rows="6" class="form-control"></textarea>
+                  <label for="body-contact" class="form-label">Mensagem</label>
+                  <textarea name="body" name="body-contact" id="body-contact" cols="30" rows="6" class="form-control"></textarea>
               </div>
               <div class="form-group">
-                  <button type="button" class="form-control btn btn-success" onclick="contact()">Enviar</button>
+                  <button type="button" class="form-control btn btn-success" onclick="registerContact()">Enviar</button>
               </div>
           </div>
         </form>
+        <h3 class="feedback-text text-center" id="feedback-contact"></h3>
       </div>
     </section>
     <!-- Footer -->

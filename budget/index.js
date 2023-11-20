@@ -1,87 +1,52 @@
-//Service
-const queryString = window.location.search; //Setting the current url
-const params = new URLSearchParams(queryString); //new Object
-const id = params.get('id'); //getting the ID from the URL
-var service; //this will store our current service
-if(id === null){
-    //window.location.href = "../index.html";
-}else{
-    for (const object of Service.services) { //Use of "for of" to break the iteration when needed
-        if(object.id == id){
-            service = object;
-            break;
-        }
-    }
-}
-//Getting the service name
-var serviceName = document.getElementById("service-name");
-serviceName.textContent = service.name;
-//List of states and cities
-$(document).ready(function() {
-    // Populate the state (UF) select element
-    const stateSelect = $('#state-select');
-    $.ajax({
-        url: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
-        method: 'GET',
-        success: function(states) {
-            states.forEach(function(state) {
-                stateSelect.append($('<option>', {
-                    value: state.sigla,
-                    text: state.nome
-                }));
-            });
-        },
-        error: function() {
-            stateSelect.html('<option value="">Error fetching states</option>');
-        }
+main();
+async function main(){
+    //Getting service object
+    const queryString = window.location.search; //Setting the current url
+    const params = new URLSearchParams(queryString); //new Object
+    const id = params.get('id'); //getting the ID from the URL
+    requestService = await getServices(id);
+    service = requestService.services;
+    //Filling states and city
+    const stateElement = document.querySelector('#state-select');
+    const states = await getStates();
+    await createOptions(states,'nome','sigla',stateElement);
+    const cityElement = document.querySelector('#city-select');
+    const cities = await getCities(stateElement.value);
+    await createOptions(cities,'nome','nome',cityElement);
+    stateElement.addEventListener('click',async () => {
+        //Erasing cities
+        removeChildren(cityElement);
+        //Adding cities
+        let cities = await getCities(stateElement.value);
+        await createOptions(cities,'nome','nome',cityElement);
     });
-
-    // Listen for state selection changes
-    stateSelect.on('change', function() {
-        const selectedState = $(this).val();
-        const citySelect = $('#city-select');
-        citySelect.empty(); // Clear city options
-
-        if (selectedState) {
-            const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedState}/municipios`;
-            $.ajax({
-                url: apiUrl,
-                method: 'GET',
-                success: function(cities) {
-                    cities.forEach(function(city) {
-                        citySelect.append($('<option>', {
-                            value: city.nome,
-                            text: city.nome
-                        }));
-                    });
-                },
-                error: function() {
-                    citySelect.html('<option value="">Error fetching cities</option>');
-                }
+    setContent('#service-name','text',service.name);
+    //Setting up inputs' titles and placeholders
+    const labels = document.querySelectorAll(".form-label");
+    const inputs = document.querySelectorAll(".form-control");
+    //Setting up inputs' placeholders 
+    inputs.forEach(function(input){
+        if(input.id != "budget-input"){
+            input.placeholder = "Digite aqui...";
+            input.addEventListener("keyup",function(){
+                updateBudget(service);
             });
         }
     });
-});
-//Setting up inputs' titles and placeholders
-const labels = document.querySelectorAll(".form-label");
-const inputs = document.querySelectorAll(".form-control");
-//Setting up inputs' placeholders 
-inputs.forEach(function(input){
-    if(input.id != "budget-input"){
-        input.placeholder = "Digite aqui...";
-        input.addEventListener("keyup",function(){
-            updateBudget();
-        });
-    }
-});
-//Setting up inputs' titles
-for(var i=0;i<labels.length;i++){
-    if(inputs[i].title == ""){
-        inputs[i].title = "Digite seu " + labels[i].textContent.toLowerCase();
+    //Setting up inputs' titles
+    for(var i=0;i<labels.length;i++){
+        if(inputs[i].title == ""){
+            inputs[i].title = "Digite seu " + labels[i].textContent.toLowerCase();
+            if(inputs[i].required){
+                labels[i].innerHTML += '<span style = "color: red;font-size:25px"> *</span>';
+            }
+        }
     }
 }
+
+
 //Updates the textarea with the user's data
-function updateBudget(){
+function updateBudget(service){
     let labels = document.querySelectorAll(".form-label");
     let inputs = document.querySelectorAll(".form-control");
     let budget = document.getElementById("budget-input");
@@ -102,25 +67,36 @@ function updateBudget(){
             }else{
                 budgetText += labels[i].textContent + ": " + inputs[i].value + "\n";
             }
-            
-            // console.log(labels[i].textContent+": "+inputs[i].value);
         }
     }
     budgetText += "\nPedido via guismith.github.io/sthetics";
     budget.textContent = budgetText;
 }
 //Sends the details to the developer's whatsapp
-function submitForm(){
+async function submitForm(){
+    const requiredData = ['name', 'email','address','uf','city','date','hour'];
+    const budgetData = {};
+    const budgetInputs = document.querySelectorAll('form input, form select, form textarea:not(#budget-input)');
+    const feedbackElement = document.querySelector('#feedback-budget');
+    let feedbackStatus = true;
+    budgetInputs.forEach(input => {
+        budgetData[input.name] = input.value;
+    });
+    feedbackStatus = checkObj(budgetData,requiredData);
+    if(!feedbackStatus){
+        feedbackElement.textContent = 'Preencha todos os campos!';
+        feedbackElement.style.color = 'red';
+    }else{
+        feedbackElement.textContent = 'Tudo certo!';
+        feedbackElement.style.color = 'green';
+    }
+    
     /*
-    The code in comments sends the message to the number the user informed
-    const number = "55" + document.getElementById("number-input").value;
-    */
     const budgetText = document.getElementById("budget-input").value;
     var link = "https://wa.me/";
     var whatsText = budgetText.replace(/ /g, "%20").replace(/\n/g,"%0A");
     link += "5549991145655?text=" + whatsText;
-    
-    console.log(link);
     window.open(link, "_blank");
+    */
     return false;
 }
