@@ -10,14 +10,13 @@ function contact(){
 
 async function registerContact(){
     let feedbackElement = document.querySelector('#feedback-contact');
-    let requiredData = ['name','email','subject','body'];
     const contactData = {
         name: getValue('#name-contact'),
         email: getValue('#email-contact'),
         subject: getValue('#subject-contact'),
         body: getValue('#body-contact')
     };
-    if(setContact(contactData,feedbackElement)){
+    if(await setContact(contactData,feedbackElement)){
         let inputs = document.querySelectorAll('form input, form textarea');
         inputs.forEach(input => {
             input.value = "";

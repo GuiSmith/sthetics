@@ -296,7 +296,7 @@ async function checkUser(userName,userEmail){
       console.log(`Couldn't create user: ${createUser.message}`);
     }else{
       //console.log(`User created!`);
-      requestUser = await getUser(userEmail);
+      requestUser = await getUser(userName,userEmail);
       return requestUser.user;
     }
   }else{
