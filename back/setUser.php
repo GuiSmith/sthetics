@@ -3,13 +3,7 @@
     require "conn.php";
 
     $data = json_decode(file_get_contents('php://input'),true);
-    $validation = true;
-
-    foreach ($data as $key => $value) {
-        if(empty($value)){
-            $validation = false;
-        }
-    }
+    $validation = checkObj($data,['user','email']);
 
     if(!$validation){
         $response['status'] = 'failed';
@@ -32,6 +26,7 @@
                 $response['message'] = 'Something went wrong with the query';
                 // $response['error'] = $qry->errorInfo();
                 $response['catch'] = $error->getMessage();
+                $response['data'] = $data;
             }
         }
     }

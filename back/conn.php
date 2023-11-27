@@ -7,4 +7,15 @@
         'message' => ''
     );
 
+    function checkObj($obj,$requiredData){
+        foreach ($obj as $key => $value) {
+            if(in_array($key,$requiredData)){
+                if(empty($value)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 ?>

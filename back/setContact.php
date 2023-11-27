@@ -2,13 +2,7 @@
     require "conn.php";
 
     $data = json_decode(file_get_contents('php://input'), true);
-    $validation = true;
-
-    foreach ($data as $key => $value) {
-        if (empty($value)) {
-            $validation = false;
-        }
-    }
+    $validation = checkObj($data,['user_id','subject','body']);
 
     if(!$validation){
         $response['status'] = 'failed';

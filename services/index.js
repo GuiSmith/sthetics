@@ -4,18 +4,15 @@ async function main(){
     const queryString = window.location.search; //Setting the current url
     const params = new URLSearchParams(queryString); //new Object
     const id = params.get('id'); //getting the ID from the URL
-    console.log(id);
     if(id === null){
         window.location.href = '../main/index.html';
     }else{
         const data = await getServices(id);
-        console.log(data);
         setValues(data.services);
     }
 }
 
-function setValues(array){
-    const service = array[0];
+function setValues(service){
     setContent("#service-name","text",service.name);
     setContent("#service-price","text",service.price);
     setContent("#service-time", "text",service.time);

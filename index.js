@@ -95,6 +95,9 @@ function setContent(query,attribute,value){
   const element = document.querySelector(query);
   console.log();
   switch(attribute){
+      case 'value':
+        element.value = value;
+        break;
       case "text":
           element.textContent = value;
           break;
@@ -156,16 +159,9 @@ async function createOptions(list,text,value,parent){
 
 //Get States of Brazil
 async function getStates(){
-  const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados');
+  const response = await fetch('../back/getStates.php');
   const states = await response.json();
   return states;
-}
-
-//Get cities of a brazilian state
-async function getCities(uf){
-  const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`);
-  const cities = await response.json();
-  return cities;
 }
 
 /*
@@ -208,98 +204,119 @@ async function setUser(name,email,feedbackElement){
     email: email
   };
   requiredData = ['name','email'];
-  let feedbackStatus = checkObj(userData,requiredData);
-  if(!feedbackStatus){
-    feedbackElement.textContent = "Preencha todos os campos!";
-    return false;
-  }
-  //Setting up options for the request
-  let options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(userData)
-  };
-  //Requesting
-  try {
+  let objStatus = await checkObj(userData,requiredData,feedbackElement);
+  if(objStatus){
+    let options = getPostOptions(userData);    
+    //Requesting
     let request = await fetch('../back/setUser.php',options);
     request = await request.json();
     return request.status;
-  }catch(error){
-    console.error(error);
   }
 }
 
 //Creates a contact
 async function setContact(contactObj,feedbackElement){
-  let user;
   let requiredData = ['name','email','subject','body'];
-  let feedbackStatus = checkObj(contactObj,requiredData);
-  if(feedbackStatus){
-    if(validEmail(contactObj.email)){
-      feedbackElement.textContent = '';
-      feedbackElement.style.color = 'darkgreen';
-    }else{
-      feedbackElement.textContent = 'Informe um e-mail válido!';
-      feedbackElement.style.color = 'red';
-      return false;
+  let objStatus = await checkObj(contactObj,requiredData,feedbackElement);
+  if(objStatus){
+    let user = await checkUser(contactObj.name,contactObj.email,feedbackElement);
+    contactObj.user_id = user.id;
+    let options = getPostOptions(contactObj);
+    let promise = await fetch('../back/setContact.php', options);
+    let contactRequest = await promise.json();
+    if(contactRequest.status == 'success'){
+      feedbackElement.textContent = 'Mensagem cadastrada com sucesso!';
     }
+    return true;
+  }else{
+    return false;
+  }
+}
+
+//Checks if the object contains all needed properties and if any is empty or null
+async function checkObj(obj,properties,feedbackElement){
+  let validation = true;
+  let message = '';
+  //Checking if obj contains all needed properties
+  properties.forEach(property => {
+    if(!obj.hasOwnProperty(property)){
+      validation = false;
+      message = 'Dados manipulados!';
+      console.log(`Missing property: ${property}`);
+    }else{
+      if(isEmpty(obj[property])){
+        validation = false;
+        message = 'Preencha todos os campos!';
+        console.log(`Property is empty: ${property}`);
+      }
+    }
+  });
+  if(validation){
+    if(obj.hasOwnProperty('email')){
+      if(validEmail(obj['email'])){
+        feedbackElement.textContent = '';
+        feedbackElement.style.color = 'darkgreen';
+      }else{
+        feedbackElement.textContent = 'E-mail inválido!';
+        feedbackElement.style.color = 'red';
+        return false;
+      }
+    }
+    return true;
   }else{
     feedbackElement.textContent = 'Preencha todos os campos!';
     feedbackElement.style.color = 'red';
     return false;
   }
-  user = await checkUser(contactObj.name,contactObj.email,feedbackElement);
-  contactObj.user_id = user.id;
-  options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(contactObj)
-  };
-  let promise = await fetch('../back/setContact.php', options);
-  let contactRequest = await promise.json();
-  if(contactRequest.status == 'success'){
-    feedbackElement.textContent = 'Mensagem cadastrada com sucesso!';
-  }
-  return true;
-}
-
-//Checks if the object contains all needed properties and if any is empty or null
-async function checkObj(obj,properties){
-  //Checking if obj contains all needed properties
-  properties.forEach(property => {
-    if(!obj.hasOwnProperty(property)){
-      console.log(`Missing property: ${property}`);
-      return false;
-    }
-  });
-  //Checking if any data is empty
-  for (const property in obj) {
-    if(isEmpty(obj[property])){
-      console.log(`Property is empty: ${property}`);
-      return false;
-    }
-  }
-  return true;
+  
 }
 
 //Checks if user exists and creates one if it doesn't
-async function checkUser(userName,userEmail){
+async function checkUser(userName,userEmail,feedbackElement){
   let requestUser = await getUser(userEmail); //Selects user from the database
-  if(requestUser['status'] == 'failed'){ //Checks if the user exists
-    //console.log(`Couldn't get user: ${requestUser.message}`);
-    createUser = await setUser(userName,userEmail); //Creates user
+  if(requestUser.status == 'failed'){ //Checks if the user exists
+    createUser = await setUser(userName,userEmail,feedbackElement); //Creates user
     if(createUser.status == 'failed'){
       console.log(`Couldn't create user: ${createUser.message}`);
     }else{
       //console.log(`User created!`);
-      requestUser = await getUser(userName,userEmail);
+      requestUser = await getUser(userEmail);
       return requestUser.user;
     }
   }else{
       return requestUser.user;
   }
+}
+
+async function setBudget(budgetObj, feedbackElement){
+  const requiredData = ['name', 'email','address','uf','city','date','hour'];
+  let objStatus = await checkObj(budgetObj,requiredData, feedbackElement);
+  if(objStatus){
+    let user = await checkUser(budgetObj.name, budgetObj.email, feedbackElement);
+    budgetObj.user_id = user.id;
+    let options = getPostOptions(budgetObj);
+    let promise = await fetch('../back/setBudget.php', options);
+    let budgetRequest = await promise.json();
+    if(budgetRequest.status == 'success'){
+      feedbackElement.textContent = 'Orçamento cadastrado com sucesso!';
+      return true;
+    }else{
+      console.log(budgetRequest);
+      feedbackElement.textContent = 'Algo deu errado!';
+      return false;
+    }
+  }
+  
+}
+
+//Creates and returns the options for fetching data
+function getPostOptions(obj){
+  let options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(obj)
+  };
+  return options;
 }
