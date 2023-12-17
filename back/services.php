@@ -22,7 +22,7 @@
         }else{
             $response['services'] = $qry->fetchAll(PDO::FETCH_OBJ)[0];
         }
-        $response['query'] = $sql;
+        // $response['query'] = $sql;
     }catch(PDOException $error){
         $response['status'] = 'failed';
         $response['message'] = 'something went wrong';

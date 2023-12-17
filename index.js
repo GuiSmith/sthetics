@@ -7,7 +7,7 @@ function setSlides(objList){
       slides[i].alt = objList[i].name + " - " + objList[i].img1;
       slides[i].addEventListener("click", (function (index) {
           return function () {
-              window.location.href = "services/index.html?id=" + objList[index].id;
+              window.location.href = "../services/index.html?id=" + objList[index].id;
           };
       })(i));
       captions[i].textContent = objList[i].name;
@@ -226,8 +226,33 @@ async function setContact(contactObj,feedbackElement){
     let contactRequest = await promise.json();
     if(contactRequest.status == 'success'){
       feedbackElement.textContent = 'Mensagem cadastrada com sucesso!';
+      return true;
     }
-    return true;
+  }else{
+    return false;
+  }
+}
+
+//Creates a review
+async function setReview(reviewObj,feedbackElement){
+  let requiredData = ['name','email','service_id','review'];
+  let objStatus = await checkObj(reviewObj,requiredData,feedbackElement);
+  if(objStatus){
+    let user = await checkUser(reviewObj.name,reviewObj.email,feedbackElement);
+    reviewObj.user_id = user.id;
+    delete reviewObj.name;
+    delete reviewObj.email;
+    console.log(reviewObj);
+    let options = getPostOptions(reviewObj);
+    let promise = await fetch('../back/setReview.php',options);
+    let reviewRequest = await promise.json();
+    console.log(reviewRequest);
+    if(reviewRequest.status == 'success'){
+      feedbackElement.textContent = 'Depoimento cadastrado com sucesso!';
+      return true;
+    }else{
+      return false;
+    }
   }else{
     return false;
   }
